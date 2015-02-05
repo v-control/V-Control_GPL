@@ -1,0 +1,4 @@
+@charset "ISO-8859-1";
+
+.mainmenu {background-image: linear-gradient(top, white 0%, black 50%);}
+

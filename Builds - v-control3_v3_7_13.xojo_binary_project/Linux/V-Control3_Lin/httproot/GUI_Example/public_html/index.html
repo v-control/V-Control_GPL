@@ -1,0 +1,31 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>V-Control GUI Example</title>
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+        <script>
+            function showpage(sPage) {
+
+            }
+        </script>
+        <script>
+            $(function() {
+                $("#tabs").tabs();
+            });
+        </script>
+    </head>
+    <body>
+        <div id="mainmenu" class="mainmenu">
+            <input onclick="showpage('page1');" type="button" class="menubutton" value="Page 1" name="mnuPage1" />
+            <input onclick="showpage('page2');" type="button" class="menubutton" value="Page 2" name="mnuPage1" />
+        </div>
+       
+    </body>
+</html>

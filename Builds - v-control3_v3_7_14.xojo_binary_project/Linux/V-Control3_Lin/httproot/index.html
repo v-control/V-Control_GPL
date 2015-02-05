@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.To change this template file, choose Tools | Templatesand open the template in the editor.-->
+<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+        <title>V-Control Web Example</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="./js/libs/jquery-ui-1.10.4.custom.min.css">
+        <link rel="stylesheet" type="text/css" href="./js/libs/jquery-ui-1.10.4.custom.css">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <script src="./js/libs/jquery/jquery.js"></script>
+        <script src="./js/libs/jquery/jquery-ui-1.10.4.custom.min.js"></script>
+        <script src="./js/libs/v-control.js"></script>
+        <script>
+            $(document).ready(function() {
+                //**********************************************************
+                //Change the IP with the IP Address of your V-Control system
+                initWebSocket("ws://127.0.0.1:8080"); //use the same port as on V-Control httpRemote (8080 here)
+                //**********************************************************
+            });
+
+            $(window).load(function() {
+               
+            });
+
+            // This Function is used by v-control.js to show status messages
+            //If these messages should not be visible in the GUI just hide the StatusBar
+            function ShowStatus(MsgType, EventModule, EventDevice, EventChannel, EventCmd, EventData)
+            {
+                $("#StatusBar").text(MsgType + "|" + EventModule + "|" + EventDevice + "|" + EventChannel + "|" + EventCmd + "|" + EventData);
+                // ********** Handle event messages and update the GUI **********
+
+               
+                // *******************************************
+                // Task Buttons
+                // *******************************************
+                // mark Tasks CS01 ... CS20
+                // CS01
+                if (EventData === "CS01;START")
+                {
+                    $('#CS01').css('color', "#ff0000");
+                }
+                if (EventData === "CS01;STOP")
+                {
+                    $('#CS01').css('color', "#ffffff");
+                }
+                
+                // CS02
+                if (EventData === "CS02;START")
+                {
+                    $('#CS02').css('color', "#ff0000");
+                }
+                if (EventData === "CS02;STOP")
+                {
+                    $('#CS02').css('color', "#ffffff");
+                }
+                
+                // CS03
+                if (EventData === "CS03;START")
+                {
+                    $('#CS03').css('color', "#ff0000");
+                }
+                if (EventData === "CS03;STOP")
+                {
+                    $('#CS03').css('color', "#ffffff");
+                }
+                
+                // CS04
+                if (EventData === "CS04;START")
+                {
+                    $('#CS04').css('color', "#ff0000");
+                }
+                if (EventData === "CS04;STOP")
+                {
+                    $('#CS04').css('color', "#ffffff");
+                }
+                
+                // CS05
+                if (EventData === "CS05;START")
+                {
+                    $('#CS05').css('color', "#ff0000");
+                }
+                if (EventData === "CS05;STOP")
+                {
+                    $('#CS05').css('color', "#ffffff");
+                }
+                
+                // CS06
+                if (EventData === "CS06;START")
+                {
+                    $('#CS06').css('color', "#ff0000");
+                }
+                if (EventData === "CS06;STOP")
+                {
+                    $('#CS06').css('color', "#ffffff");
+                }
+                
+                // CS07
+                if (EventData === "CS07;START")
+                {
+                    $('#CS07').css('color', "#ff0000");
+                }
+                if (EventData === "CS07;STOP")
+                {
+                    $('#CS07').css('color', "#ffffff");
+                }
+                
+                // CS08
+                if (EventData === "CS08;START")
+                {
+                    $('#CS08').css('color', "#ff0000");
+                }
+                if (EventData === "CS08;STOP")
+                {
+                    $('#CS08').css('color', "#ffffff");
+                }
+                
+                // CS09
+                if (EventData === "CS09;START")
+                {
+                    $('#CS09').css('color', "#ff0000");
+                }
+                if (EventData === "CS09;STOP")
+                {
+                    $('#CS09').css('color', "#ffffff");
+                }
+                
+                // CS10
+                if (EventData === "CS10;START")
+                {
+                    $('#CS10').css('color', "#ff0000");
+                }
+                if (EventData === "CS10;STOP")
+                {
+                    $('#CS10').css('color', "#ffffff");
+                }
+                
+                // CS11
+                if (EventData === "CS11;START")
+                {
+                    $('#CS11').css('color', "#ff0000");
+                }
+                if (EventData === "CS11;STOP")
+                {
+                    $('#CS11').css('color', "#ffffff");
+                }
+                
+                // CS12
+                if (EventData === "CS12;START")
+                {
+                    $('#CS12').css('color', "#ff0000");
+                }
+                if (EventData === "CS12;STOP")
+                {
+                    $('#CS12').css('color', "#ffffff");
+                }
+                
+                // CS13
+                if (EventData === "CS13;START")
+                {
+                    $('#CS13').css('color', "#ff0000");
+                }
+                if (EventData === "CS13;STOP")
+                {
+                    $('#CS13').css('color', "#ffffff");
+                }
+                
+                // CS14
+                if (EventData === "CS14;START")
+                {
+                    $('#CS14').css('color', "#ff0000");
+                }
+                if (EventData === "CS14;STOP")
+                {
+                    $('#CS14').css('color', "#ffffff");
+                }
+                
+                // CS15
+                if (EventData === "CS15;START")
+                {
+                    $('#CS15').css('color', "#ff0000");
+                }
+                if (EventData === "CS15;STOP")
+                {
+                    $('#CS15').css('color', "#ffffff");
+                }
+                
+                // CS16
+                if (EventData === "CS16;START")
+                {
+                    $('#CS16').css('color', "#ff0000");
+                }
+                if (EventData === "CS16;STOP")
+                {
+                    $('#CS16').css('color', "#ffffff");
+                }
+                
+                // CS17
+                if (EventData === "CS17;START")
+                {
+                    $('#CS17').css('color', "#ff0000");
+                }
+                if (EventData === "CS17;STOP")
+                {
+                    $('#CS17').css('color', "#ffffff");
+                }
+                
+                // CS18
+                if (EventData === "CS18;START")
+                {
+                    $('#CS18').css('color', "#ff0000");
+                }
+                if (EventData === "CS18;STOP")
+                {
+                    $('#CS18').css('color', "#ffffff");
+                }
+                
+                // CS19
+                if (EventData === "CS19;START")
+                {
+                    $('#CS19').css('color', "#ff0000");
+                }
+                if (EventData === "CS19;STOP")
+                {
+                    $('#CS19').css('color', "#ffffff");
+                }
+                
+                // CS20
+                if (EventData === "CS20;START")
+                {
+                    $('#CS20').css('color', "#ff0000");
+                }
+                if (EventData === "CS20;STOP")
+                {
+                    $('#CS20').css('color', "#ffffff");
+                }                
+                
+            }
+
+        </script>
+    </head>
+    <body style="background-color: #606060">
+    <center>
+        <hr>
+        <p id="page1"> 
+            <button id="CS01" onclick="scrRunTask('CS01')">Out 10 In 1</button> 
+            <button id="CS02" onclick="scrRunTask('CS02')">Out 10 In 2</button> 
+            <button id="CS03" onclick="scrRunTask('CS03')">Out 10 in 3</button> 
+            <button id="CS04" onclick="scrRunTask('CS04')">Out 10 in 4</button> 
+        </p>
+        <p id="page2"> 
+            <button id="CS05" onclick="scrRunTask('CS05')">Out 10 in 5</button> 
+            <button id="CS06" onclick="scrRunTask('CS06')">Out 10 in 6</button> 
+            <button id="CS07" onclick="scrRunTask('CS07')">Out 10 in 7</button> 
+            <button id="CS08" onclick="scrRunTask('CS08')">Out 10 in 8</button> 
+        </p>
+        <p id="page3"> 
+            <button id="CS09" onclick="scrRunTask('CS09')">Out 10 in 9</button> 
+            <button id="CS10" onclick="scrRunTask('CS10')">Out 10 in 10</button> 
+            <button id="CS11" onclick="scrRunTask('CS11')">Out 10 in 11</button> 
+            <button id="CS12" onclick="scrRunTask('CS12')">Out 10 in 12</button> 
+        <p>
+            <button id="CS13" onclick="scrRunTask('CS13')">Out 10 in 13</button> 
+            <button id="CS14" onclick="scrRunTask('CS14')">Out 10 in 14</button> 
+            <button id="CS15" onclick="scrRunTask('CS15')">Out 10 in 15</button> 
+            <button id="CS16" onclick="scrRunTask('CS16')">Out 10 in 16</button> 
+        <p id="page4"> 
+            <button id="CS17" onclick="scrRunTask('CS17')">Out 10 in 17</button> 
+            <button id="CS18" onclick="scrRunTask('CS18')">Out 10 in 18</button> 
+            <button id="CS19" onclick="scrRunTask('CS19')">Out 10 in 19</button> 
+            <button id="CS20" onclick="scrRunTask('CS20')">Out 10 in 20</button> 
+        <p>
+            
+
+        
+        
+        <hr>
+        <p id="StatusBar" style="color: #ccc" align="bottom"> </p>
+    </center>
+    <script>
+        $("button").button();
+    </script>
+</body>
+</html>

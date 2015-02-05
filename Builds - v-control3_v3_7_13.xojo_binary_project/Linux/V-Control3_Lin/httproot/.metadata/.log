@@ -1,0 +1,39 @@
+!SESSION 2013-09-26 19:09:08.788 -----------------------------------------------
+eclipse.buildId=3.4.2.201308081805
+java.version=1.6.0_45
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=de_DE
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY com.aptana.git.ui 4 0 2013-09-26 19:10:53.404
+!MESSAGE We were unable to find a git executable version 1.6.0 or greater, if you have an older version of git you may need to update. If you do have one installed, you may need to enter the location manually in Preferences > Team > Git.
+
+!ENTRY com.aptana.projects 2 0 2013-09-26 19:11:06.821
+!MESSAGE Internal error: 
+!STACK 1
+org.eclipse.core.runtime.CoreException: 
+	at com.aptana.projects.wizards.AbstractNewProjectWizard$1$1.run(AbstractNewProjectWizard.java:274)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2326)
+	at com.aptana.projects.wizards.AbstractNewProjectWizard$1.run(AbstractNewProjectWizard.java:345)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Caused by: org.eclipse.core.runtime.CoreException: We were unable to find a git executable version 1.6.0 or greater, if you have an older version of git you may need to update. If you do have one installed, you may need to enter the location manually in Preferences > Team > Git.
+	at com.aptana.projects.wizards.AbstractNewProjectWizard.doCloneFromGit(AbstractNewProjectWizard.java:667)
+	at com.aptana.projects.wizards.AbstractNewProjectWizard.cloneFromGit(AbstractNewProjectWizard.java:579)
+	at com.aptana.projects.wizards.AbstractNewProjectWizard.createNewProject(AbstractNewProjectWizard.java:537)
+	at com.aptana.projects.wizards.AbstractNewProjectWizard$1$1.run(AbstractNewProjectWizard.java:270)
+	... 4 more
+!SUBENTRY 1 com.aptana.projects 4 0 2013-09-26 19:11:06.822
+!MESSAGE 
+!STACK 1
+org.eclipse.core.runtime.CoreException: We were unable to find a git executable version 1.6.0 or greater, if you have an older version of git you may need to update. If you do have one installed, you may need to enter the location manually in Preferences > Team > Git.
+	at com.aptana.projects.wizards.AbstractNewProjectWizard.doCloneFromGit(AbstractNewProjectWizard.java:667)
+	at com.aptana.projects.wizards.AbstractNewProjectWizard.cloneFromGit(AbstractNewProjectWizard.java:579)
+	at com.aptana.projects.wizards.AbstractNewProjectWizard.createNewProject(AbstractNewProjectWizard.java:537)
+	at com.aptana.projects.wizards.AbstractNewProjectWizard$1$1.run(AbstractNewProjectWizard.java:270)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2326)
+	at com.aptana.projects.wizards.AbstractNewProjectWizard$1.run(AbstractNewProjectWizard.java:345)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 2 com.aptana.git.ui 4 0 2013-09-26 19:11:06.822
+!MESSAGE We were unable to find a git executable version 1.6.0 or greater, if you have an older version of git you may need to update. If you do have one installed, you may need to enter the location manually in Preferences > Team > Git.

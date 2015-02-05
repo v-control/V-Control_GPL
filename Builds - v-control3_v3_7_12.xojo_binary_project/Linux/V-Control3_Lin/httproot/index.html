@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style>
+	.request {margin-left:1cm;color:#770000}
+	.response {color:#777777}
+	.log {border:thin solid blue;margin-left:2cm;margin-right:2cm}
+	body {background-color:white}
+	button {background-color:white;display:block}
+</style>
+<script language="JavaScript">
+var xmlhttp;
+if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+	xmlhttp=new XMLHttpRequest();
+}else{// code for IE6, IE5
+	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+  
+ function vcontrol(control){
+	var url="cgi-bin/scrRunTask%05"+control;
+	document.getElementById("log").innerHTML=document.getElementById("log").innerHTML+'<div class="request">'+escape(url)+'</div>'
+  
+	xmlhttp.onreadystatechange=function(){
+		if (xmlhttp.readyState==4 && xmlhttp.status==200){
+			document.getElementById("log").innerHTML=document.getElementById("log").innerHTML+'<div class="response">'+escape(xmlhttp.responseText)+'</response>';
+		}
+	}
+	
+	xmlhttp.open("GET",url,true);
+	xmlhttp.send();
+ } 
+</script>
+</head>
+<body>
+
+<button type="button" onclick="vcontrol(this.innerHTML)">task1</button>
+<button type="button" onclick="vcontrol(this.innerHTML)">task2</button>
+<button type="button" onclick="vcontrol(this.innerHTML)">task3</button>
+<h2>Log:</h2>
+<div id="log" class="log"></div>
+
+</body>
+</html> 

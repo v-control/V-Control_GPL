@@ -1,0 +1,29 @@
+/* 
+    Document   : main
+    Created on : 26.09.2013, 19:36:23
+    Author     : dw
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+    
+}
+
+/* Hauptmenue */
+.mainmenu {
+    background-color: #800000;
+    color: #ffffff;
+    height: 80px;
+    
+}
+
+/* Menu Button */
+.menubutton {
+    color: #ffffff;
+    background: transparent;
+    height: 80px;
+    width: 100px;
+    border-color: #ffffff;    
+}

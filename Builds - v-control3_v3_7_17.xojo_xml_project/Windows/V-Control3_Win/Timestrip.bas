@@ -32,18 +32,18 @@ next
 ' ******************* Start the Loop **************************
 dim sDevice,sCmd,sChannels,sParams as string
 
-while true
+while CuesetBlockedStatus = true
 	CheckSync
 	i = 0
 	'Find the next cue to execute
-	while i <= UBound(aTimestrip,2) and bResync = false
+	while i <= UBound(aTimestrip,2) and bResync = false and CuesetBlockedStatus = true
 		'Find the next cue
 		WaitForFrame = val(aTimestrip(0,i)) + RelativeOffset
 		if WaitForFrame >= MasterTCPosition or (WaitForFrame-LastFrame < 50 and WaitForFrame-LastFrame > 0) then
 			LastFrame = WaitForFrame
 			ShowTimestripRow(i)
 			'Wait for the Time to execute the cue
-			while WaitForFrame >= MasterTCPosition and bResync = false
+			while WaitForFrame >= MasterTCPosition and bResync = false and CuesetBlockedStatus = true
 				CheckSync
 			wend
 			
@@ -51,6 +51,7 @@ while true
 			if bResync = false then
 				'Read the row
 				for x = 1 to UBound(aTimestrip)
+					if CuesetBlockedStatus = true then exit
 					sDevice = NthField(aTimestrip(x,i),chr(10),1)
 					sChannels = NthField(aTimestrip(x,i),chr(10),2)
 					sCmd = NthField(aTimestrip(x,i),chr(10),3)
@@ -65,8 +66,6 @@ while true
 						if sDevice = "CallAsThread" then CallAsThread(sChannels)
 						if sDevice = "StopTask" then StopTask(sChannels)
 						if sDevice = "StopAllTasks" then StopAllTasks
-						if sDevice = "DisableTimerEvent" then DisableTimerEvent(DP1)
-						if sDevice = "EnableTimerEvent" then EnableTimerEvent(DP1)
 						if sDevice = "ShowMessage" then ShowMessage(sChannels)
 						if sDevice = "ShellExecuteAsFunction" then ShellExecuteAsFunction(sChannels)
 						if sDevice = "ShellExecuteAsThread" then ShellExecuteAsThread(sChannels)

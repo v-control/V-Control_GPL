@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.To change this template file, choose Tools | Templatesand open the template in the editor.-->
+<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+        <title>V-Control Web Example</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="./js/libs/jquery-ui-1.10.4.custom.min.css">
+        <link rel="stylesheet" type="text/css" href="./js/libs/jquery-ui-1.10.4.custom.css">
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <script src="./js/libs/jquery/jquery.js"></script>
+        <script src="./js/libs/jquery/jquery-ui-1.10.4.custom.min.js"></script>
+        <script src="./js/libs/v-control.js"></script>
+        <script>
+            $(document).ready(function() {
+                //**********************************************************
+                //Change the IP with the IP Address of your V-Control system
+                initWebSocket("ws://127.0.0.1:8080"); //use the same port as on V-Control httpRemote (8080 here)
+                //**********************************************************
+            });
+
+            $(window).load(function() {
+                //Wait some Time to establisch websocket connection and then get the current status
+                setTimeout(function()
+                {
+                    //Get the current Status
+                    devRunCommand('Dummy Projector_1', 'dummy', 'GetPower', '', '', '', '', '', '');
+                    //run all following Status requests with 100ms delay
+                    setTimeout (function()
+                    {
+                        devRunCommand('Dummy Projector_2', 'dummy2', 'GetPower', '', '', '', '', '', '');
+                    },100);
+                    setTimeout (function()
+                    {
+                       devRunCommand('Dummy Projector_1', 'dummy', 'GetSource', '', '', '', '', '', '');
+                    },200);
+                    setTimeout (function()
+                    {
+                        devRunCommand('Dummy Projector_2', 'dummy2', 'GetSource', '', '', '', '', '', '');
+                    },300);
+                }, 1000); // 1000 ms delay after window.load before status request begins
+            });
+
+            // This Function is used by v-control.js to show status messages
+            //If these messages should not be visible in the GUI just hide the StatusBar
+            function ShowStatus(MsgType, EventModule, EventDevice, EventChannel, EventCmd, EventData)
+            {
+                $("#StatusBar").text(MsgType + "|" + EventModule + "|" + EventDevice + "|" + EventChannel + "|" + EventCmd + "|" + EventData);
+                // ********** Handle event messages and update the GUI **********
+
+                // *******************************************
+                // Projector 1
+                // *******************************************
+                // Handle Dummy Projector_1 Power message
+                if (EventDevice === 'Dummy Projector_1' && (EventCmd === 'GetPower' || EventCmd === 'Power'))
+                {
+                    if (EventData === 'ON')
+                        $('#imgProjector1').attr("src", "images/epson_h.png");
+                    if (EventData === 'OFF')
+                        $('#imgProjector1').attr("src", "images/epson_d.png");
+                }
+                //Handle Dummy Projector_1 Source messages
+                if (EventDevice === 'Dummy Projector_1' && (EventCmd === 'Source' || EventCmd === 'GetSource'))
+                {
+                    if (EventData === 'HDMI_1')
+                        $('#In_HDMI1').prop("checked", true).button("refresh");
+                    if (EventData === 'HDMI_2')
+                        $('#In_HDMI2').prop("checked", true).button("refresh");
+                    if (EventData === 'VGA')
+                        $('#In_VGA').prop("checked", true).button("refresh");
+                }
+
+                // *******************************************
+                // Projector 2
+                // *******************************************
+                // Handle Dummy Projector_2 Power message
+                if (EventDevice === 'Dummy Projector_2' && (EventCmd === 'GetPower' || EventCmd === 'Power'))
+                {
+                    if (EventData === 'ON')
+                        $('#imgProjector2').attr("src", "images/epson_h.png");
+                    if (EventData === 'OFF')
+                        $('#imgProjector2').attr("src", "images/epson_d.png");
+                }
+                //Handle Dummy Projector_2 Source messages
+                if (EventDevice === 'Dummy Projector_2' && (EventCmd === 'Source' || EventCmd === 'GetSource'))
+                {
+                    if (EventData === 'HDMI_1')
+                        $('#In_HDMI12').prop("checked", true).button("refresh");
+                    if (EventData === 'HDMI_2')
+                        $('#In_HDMI22').prop("checked", true).button("refresh");
+                    if (EventData === 'VGA')
+                        $('#In_VGA2').prop("checked", true).button("refresh");
+                }
+
+                // *******************************************
+                // Task Buttons
+                // *******************************************
+                // mark Tasks Clip1 ... Clip6
+                if (EventData === "Clip1;START")
+                {
+                    $('#Clip1').css('color', "#ff0000");
+                }
+                if (EventData === "Clip1;STOP")
+                {
+                    $('#Clip1').css('color', "#ffffff");
+                }
+                if (EventData === "Clip2;START")
+                {
+                    $('#Clip2').css('color', "#ff0000");
+                }
+                if (EventData === "Clip2;STOP")
+                {
+                    $('#Clip2').css('color', "#ffffff");
+                }
+                if (EventData === "Clip3;START")
+                {
+                    $('#Clip3').css('color', "#ff0000");
+                }
+                if (EventData === "Clip3;STOP")
+                {
+                    $('#Clip3').css('color', "#ffffff");
+                }
+
+                if (EventData === "Clip4;START")
+                {
+                    $('#Clip4').css('color', "#ff0000");
+                }
+                if (EventData === "Clip4;STOP")
+                {
+                    $('#Clip4').css('color', "#ffffff");
+                }
+                if (EventData === "Clip5;START")
+                {
+                    $('#Clip5').css('color', "#ff0000");
+                }
+                if (EventData === "Clip5;STOP")
+                {
+                    $('#Clip5').css('color', "#ffffff");
+                }
+                if (EventData === "Clip6;START")
+                {
+                    $('#Clip6').css('color', "#ff0000");
+                }
+                if (EventData === "Clip6;STOP")
+                {
+                    $('#Clip6').css('color', "#ffffff");
+                }
+            }
+
+        </script>
+    </head>
+    <body style="background-color: #606060">
+        <div id="Message" style="color: #fff"> <b>Important:</b><br>
+            By default, the websocket only works with localhost. This means that you can use this GUI only with a browser that is running on the V-Control system.
+            To enable the websocket for browsers on other devices, change the IP Adress in line 19 of index.html to the IP Address of your V-Control System. 
+            You find the index.html file in the httproot directory of your V-Control program directory.<br>
+            Load webexample.vc3 in V-Control from Example directory.
+        </div>
+    <center>
+        <hr>
+        <p id="page1"> 
+            <button id="Clip1" onclick="scrRunTask('Clip1')">Clip1</button> 
+            <button id="Clip2" onclick="scrRunTask('Clip2')">Clip2</button> 
+            <button id="Clip3" onclick="scrRunTask('Clip3')">Clip3</button>
+        </p>
+        <p> <img id="imgProjector1" title="Dummy Projector_1" alt="Dummy Projector_1" src="images/epson_d.png"> </p>
+        <div id="radio"> 
+            <input id="In_HDMI1" name="radio" onclick="devRunCommand('Dummy Projector_1', 'dummy', 'Source', '', '', 'HDMI_1', '', '', '')"
+                   type="radio"><label for="In_HDMI1">HDMI 1</label> 
+            <input id="In_HDMI2" name="radio" onclick="devRunCommand('Dummy Projector_1', 'dummy', 'Source', '', '', 'HDMI_2', '', '', '')"
+                   type="radio"><label for="In_HDMI2">HDMI 2</label> 
+            <input id="In_VGA" name="radio" onclick="devRunCommand('Dummy Projector_1', 'dummy', 'Source', '', '', 'VGA', '', '', '')"
+                   type="radio"><label for="In_VGA">&nbsp;&nbsp;VGA&nbsp;&nbsp;</label> 
+        </div>
+        <div> 
+            <button onclick="devRunCommand('Dummy Projector_1', 'dummy', 'Power', '', '', 'ON', '', '', '')">Power On</button> 
+            <button onclick="devRunCommand('Dummy Projector_1', 'dummy', 'Power', '', '', 'OFF', '', '', '')">Power Off</button> 
+        </div>
+        <hr>
+        <p id="page2"> 
+            <button id="Clip4" onclick="scrRunTask('Clip4')">Clip4</button> 
+            <button id="Clip5" onclick="scrRunTask('Clip5')">Clip5</button> 
+            <button id="Clip6" onclick="scrRunTask('Clip6')">Clip6</button>
+        </p>
+        <p> <img id="imgProjector2" title="Dummy Projector_2" alt="Dummy Projector_2" src="images/epson_d.png"> </p>
+        <div id="radio2"> 
+            <input id="In_HDMI12" name="radio2" onclick="devRunCommand('Dummy Projector_2', 'dummy2', 'Source', '', '', 'HDMI_1', '', '', '')"
+                   type="radio"><label for="In_HDMI12">HDMI 1</label> 
+            <input id="In_HDMI22" name="radio2" onclick="devRunCommand('Dummy Projector_2', 'dummy2', 'Source', '', '', 'HDMI_2', '', '', '')"
+                   type="radio"><label for="In_HDMI22">HDMI 2</label> 
+            <input id="In_VGA2" name="radio2" onclick="devRunCommand('Dummy Projector_2', 'dummy2', 'Source', '', '', 'VGA', '', '', '')"
+                   type="radio"><label for="In_VGA2">&nbsp;&nbsp;VGA&nbsp;&nbsp;</label> 
+        </div>
+        <div> 
+            <button onclick="devRunCommand('Dummy Projector_2', 'dummy2', 'Power', '', '', 'ON', '', '', '')">Power On</button> 
+            <button onclick="devRunCommand('Dummy Projector_2', 'dummy2', 'Power', '', '', 'OFF', '', '', '')">Power Off</button> 
+        </div>
+        <hr>
+        <p id="StatusBar" style="color: #ccc"> </p>
+    </center>
+    <script>
+        $("button").button();
+        $("#radio").buttonset();
+        $("#radio2").buttonset();
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-dim i,x,y,WaitForFrame,LastFrame as integer
+dim i,x,y,WaitForFrame, PreviousFrame as integer
 dim s as string
 dim aTimestrip(-1,-1) as string
 
@@ -34,24 +34,24 @@ dim sDevice,sCmd,sChannels,sParams as string
 
 while CuesetBlockedStatus = true
 	CheckSync
+	PreviousFrame = MasterTCPosition-1
 	i = 0
 	'Find the next cue to execute
 	while i <= UBound(aTimestrip,2) and bResync = false and CuesetBlockedStatus = true
 		'Find the next cue
 		WaitForFrame = val(aTimestrip(0,i)) + RelativeOffset
-		if WaitForFrame >= MasterTCPosition or (WaitForFrame-LastFrame < 50 and WaitForFrame-LastFrame > 0) then
-			LastFrame = WaitForFrame
+		if WaitForFrame >= MasterTCPosition then
 			ShowTimestripRow(i)
 			'Wait for the Time to execute the cue
-			while WaitForFrame >= MasterTCPosition and bResync = false and CuesetBlockedStatus = true
+			while WaitForFrame >= MasterTCPosition and bResync = false and CuesetBlockedStatus = true and MasterTCPosition >= PreviousFrame
 				CheckSync
 			wend
-			
+			if MasterTCPosition < PreviousFrame then i = UBound(aTimestrip,2)
 			'Run the Cue
-			if bResync = false then
+			if bResync = false and MasterTCPosition > PreviousFrame then
+				PreviousFrame = WaitForFrame
 				'Read the row
 				for x = 1 to UBound(aTimestrip)
-					if CuesetBlockedStatus = true then exit
 					sDevice = NthField(aTimestrip(x,i),chr(10),1)
 					sChannels = NthField(aTimestrip(x,i),chr(10),2)
 					sCmd = NthField(aTimestrip(x,i),chr(10),3)
